@@ -1,55 +1,55 @@
 variable "region" {
   description = "AWS region"
-  type = string
-  default = "ap-south-1"
+  type        = string
+  default     = "ap-south-1"
 }
 
 variable "vpc-name" {
   description = "VPC Name for our Jumphost server"
-  type = string
-  default = "Jumphost-vpc"
+  type        = string
+  default     = "Jumphost-vpc"
 }
 
 variable "igw-name" {
-  description = "Internet Gate Way Name for our Jumphost server"
-  type = string
-  default = "Jumphost-igw"
+  description = "Internet Gateway Name for our Jumphost server"
+  type        = string
+  default     = "Jumphost-igw"
 }
 
 variable "subnet-name1" {
   description = "Subnet Name for our Jumphost server"
-  type = string
-  default = "Jumphost-subnet1"
+  type        = string
+  default     = "Jumphost-subnet1"
 }
 
 variable "subnet-name2" {
-  description = "Subnet Name for our Jumphost server"
-  type = string
-  default = "Jumphost-subnet2"
+  description = "Second Subnet Name for our Jumphost server"
+  type        = string
+  default     = "Jumphost-subnet2"
 }
+
 variable "rt-name" {
   description = "Route Table Name for our Jumphost server"
-  type = string
-  default = "Jumphost-rt"
+  type        = string
+  default     = "Jumphost-rt"
 }
 
 variable "sg-name" {
   description = "Security Group for our Jumphost server"
-  type = string
-  default = "Jumphost-sg"
+  type        = string
+  default     = "Jumphost-sg"
 }
-
 
 variable "iam-role" {
   description = "IAM Role for the Jumphost Server"
-  type = string
-  default = "Jumphost-iam-role1"
+  type        = string
+  default     = "Jumphost-iam-role1"
 }
 
 variable "ami_id" {
   description = "AMI ID for the EC2 instance"
   type        = string
-  default     = "ami-0bb84b8ffd87024d8" // Replace with the latest AMI ID for your region
+  default     = "ami-0305d3d91b9f22e84" //replace your valid ami
 }
 
 variable "instance_type" {
@@ -59,7 +59,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  description = "EC2 keypair"
+  description = "EC2 keypair name"
   type        = string
   default     = "ap-south-1"
 }
@@ -69,4 +69,3 @@ variable "instance_name" {
   type        = string
   default     = "Jumphost-server"
 }
-#
