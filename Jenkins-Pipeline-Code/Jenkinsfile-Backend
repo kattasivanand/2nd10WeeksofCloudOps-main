@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/CloudTechDevOps/2nd10WeeksofCloudOps-main.git'
+                git branch: 'main', url: 'https://github.com/kattasivanand/2nd10WeeksofCloudOps-main.git'
             }
         }
         stage('Sonarqube Analysis') {
@@ -74,7 +74,7 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/CloudTechDevOps/2nd10WeeksofCloudOps-main.git'
+                git branch: 'main', url: 'https://github.com/kattasivanand/2nd10WeeksofCloudOps-main.git'
             }
         }
         stage('Update Deployment file') {
@@ -86,7 +86,7 @@ pipeline {
                 dir('kubernetes-files') {
                     withCredentials([string(credentialsId: 'my-git-pattoken', variable: 'git_token')]) {
                         sh '''
-                            git config user.email "cloud87777@gmail.com"
+                            git config user.email "kattasivanand123@gmail.com"
                             git config user.name "kattasivanand"
                             BUILD_NUMBER=${BUILD_NUMBER}
                             echo $BUILD_NUMBER
