@@ -5,4 +5,4 @@ terraform {
     region = "ap-south-1"                     # Region where bucket exists
   }
 }
-
+# first create bucket manually
