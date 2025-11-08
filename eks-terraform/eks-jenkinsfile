@@ -3,44 +3,58 @@ pipeline {
     parameters {
         string(name: 'ACTION', defaultValue: 'apply', description: 'Terraform action: apply or destroy')    
     }
+
     stages {
-        stage('Checkout from Git'){
-            steps{
+
+        stage('Checkout from Git') {
+            steps {
                 echo 'git checkout'
             }
         }
-        stage('Terraform version'){
-             steps{
-                 sh 'terraform --version'
-             }
+
+        stage('Terraform version') {
+            steps {
+                sh 'terraform --version'
+            }
         }
-        stage('Terraform init'){
-             steps{
-                 dir('eks-terraform') {
-                 sh 'terraform init --reconfigure'  
+
+        stage('Terraform Backend') {
+            steps {
+                dir('eks-terraform') {
+                    echo 'Configuring Terraform backend...'
+                    sh '''
+                    terraform init \
+                    -backend-config="bucket=my-eks-terraform-state-12345" \
+                    -backend-config="key=eks/pipeline/terraform.tfstate" \
+                    -backend-config="region=ap-south-1" \
+                    -reconfigure
+                    '''
                 }
-             }
+            }
         }
-        stage('Terraform validate'){
-             steps{
-                 dir('eks-terraform') {
-                      sh 'terraform validate'
-                   }
-             }
+
+        stage('Terraform validate') {
+            steps {
+                dir('eks-terraform') {
+                    sh 'terraform validate'
+                }
+            }
         }
-        stage('Terraform plan'){
-             steps{
-                 dir('eks-terraform') {
-                      sh 'terraform plan'
-                   }
-             }
+
+        stage('Terraform plan') {
+            steps {
+                dir('eks-terraform') {
+                    sh 'terraform plan'
+                }
+            }
         }
-        stage('Terraform apply/destroy'){
-              steps{
-                  dir('eks-terraform') {
-                       sh "terraform ${params.ACTION} -auto-approve"
-                   }
-              }
-         }
+
+        stage('Terraform apply/destroy') {
+            steps {
+                dir('eks-terraform') {
+                    sh "terraform ${params.ACTION} -auto-approve"
+                }
+            }
+        }
     }
 }
