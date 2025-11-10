@@ -36,7 +36,7 @@ provider "aws" {
   }
 
   resource "aws_iam_role" "worker" {
-    name = "veera-eks-worker2"
+    name = "veera-eks-worker4"
 
     assume_role_policy = jsonencode({
       "Version": "2012-10-17",
