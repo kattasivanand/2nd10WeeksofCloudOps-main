@@ -68,10 +68,13 @@ pipeline {
             }
         }
         stage("TRIVY Image Scan") {
-            steps {
-                sh 'trivy image ${REPOSITORY_URI}${AWS_ECR_REPO_NAME}:${BUILD_NUMBER} > trivyimage.txt' 
-            }
-        }
+    steps {
+        sh '''
+          trivy image --scanners vuln --cache-dir /tmp/.cache ${REPOSITORY_URI}${AWS_ECR_REPO_NAME}:${BUILD_NUMBER} > trivyimage.txt
+        '''
+    }
+}
+
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/kattasivanand/2nd10WeeksofCloudOps-main.git'
