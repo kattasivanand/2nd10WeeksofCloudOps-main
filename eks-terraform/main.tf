@@ -53,7 +53,7 @@ provider "aws" {
   }
 
   resource "aws_iam_policy" "autoscaler" {
-    name = "veera-eks-autoscaler-policy2"
+    name = "veera-eks-autoscaler-policy3"
     policy = jsonencode({
       "Version": "2012-10-17",
       "Statement": [
