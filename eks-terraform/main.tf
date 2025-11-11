@@ -112,7 +112,7 @@ provider "aws" {
  
  # data source 
  data "aws_vpc" "main" {
-  id = "vpc-0ea6eac6f5c457c3a" //spscify your existing vpc
+  id = "vpc-0bf6426946d450521" //spscify your existing vpc
 }
 
 data "aws_subnet" "subnet-1" {
